@@ -6,6 +6,7 @@ namespace CrisBaoStoreAPI.Data
     {
         public static async Task Inittialize(StoreContext context)
         {
+            if (context.Products.Any()) return;
             var products = new List<Product>
             {
                 new Product
@@ -507,8 +508,90 @@ namespace CrisBaoStoreAPI.Data
                     Storage = "512 GB",
                     Battery = "4400 mAh",
                     ReleaseTime = "7/2023"
+                },
+                new Product
+                {
+                    Name = "Laptop Asus TUF Gaming F15 FX507VV4-LP382W",
+                    Brand = "Asus",
+                    Type = "Laptop",
+                    Description = "Laptop Asus TUF Gaming F15 FX507VV4-LP382W - Sở hữu đẳng cấp của một chiến binh\r\nLaptop Asus TUF Gaming F15 FX507VV4-LP382W chắc chắn đang là chiếc laptop được nhiều game thủ săn lùng nhất hiện nay bởi đẳng cấp của nó. Sở hữu thiết kế mới và đáp ứng được mọi tác vụ, sản phẩm đang làm mưa làm gió trong cộng đồng người yêu game.",
+                    PictureUrl = "/images/products/AsusTufF15.webp",
+                    Price = 70990000,
+                    Price_KM = 50990000,
+                    Quantity = 10,
+                    ScreenSize = "7.6 inches",
+                    ScreenTechnology = "Dynamic AMOLED 2X",
+                    RearCamera = "Camera siêu rộng: 12MP F2.2, 123°, 1.12μm\r\nCamera góc rộng: 50MP, F1.8, Dual Pixel AF, OIS, 2.0μm\r\nCamera Tele: 10 MP, F2.4, PDAF, OIS, 1.0μm, zoom 3X, zoom kỹ thuật số 30X",
+                    FrontCamera = "Camera bên ngoài:10 MP, f/2.2\r\nCamera bên trong: 4 MP, F1.8",
+                    Weight = "3Kg",
+                    Sim = "Not Support Sim",
+                    Color = "Black",
+                    Sound = "Dolby Atmos",
+                    Chipset = "Snapdragon 8 Gen 2 for Galaxy (4nm) 8 nhân",
+                    OperatingSystem = "Android 13",
+                    Ram = "16 GB",
+                    Storage = "512 GB",
+                    Battery = "100WHrs",
+                    ReleaseTime = "7/2023"
+                },
+                new Product
+                {
+                    Name = "Laptop Asus ROG Strix G18 G814JI-N6063W",
+                    Brand = "Asus",
+                    Type = "Latop",
+                    Description = "Laptop ASUS ROG Strix G18 G814JI-N6063W - Kiểu dáng hiện đại, hiệu năng cao\r\nLaptop ASUS ROG Strix G18 G814JI-N6063W là một trong những sản phẩm laptop Asus gaming mới nhất của hãng ASUS. Sản phẩm được thiết kế đặc biệt cho các game thủ và những người sử dụng đòi hỏi hiệu năng cao.",
+                    PictureUrl = "/images/products/asus-rog-strix-g18.webp",
+                    Price = 100999000,
+                    Price_KM = 50990000,
+                    Quantity = 10,
+                    ScreenSize = "7.6 inches",
+                    ScreenTechnology = "Dynamic AMOLED 2X",
+                    RearCamera = "Camera siêu rộng: 12MP F2.2, 123°, 1.12μm\r\nCamera góc rộng: 50MP, F1.8, Dual Pixel AF, OIS, 2.0μm\r\nCamera Tele: 10 MP, F2.4, PDAF, OIS, 1.0μm, zoom 3X, zoom kỹ thuật số 30X",
+                    FrontCamera = "Camera bên ngoài:10 MP, f/2.2\r\nCamera bên trong: 4 MP, F1.8",
+                    Weight = "3Kg",
+                    Sim = "2 sim 5G",
+                    Color = "Black",
+                    Sound = "Dolby Atmos",
+                    Chipset = "Snapdragon 8 Gen 2 for Galaxy (4nm) 8 nhân",
+                    OperatingSystem = "Android 13",
+                    Ram = "64 GB",
+                    Storage = "10 TB",
+                    Battery = "100WHrs",
+                    ReleaseTime = "7/2023"
+                },
+                new Product
+                {
+                    Name = "Laptop Lenovo Gaming Legion 5 Pro 16ACH6H",
+                    Brand = "Lenovo",
+                    Type = "Laptop",
+                    Description = "Laptop Lenovo Gaming Legion 5 Pro 16ACH6H 82JQ00S7VN được ra mắt với hiệu suất đáng kinh ngạc giống như một chiếc máy tính để bàn di động thuận tiện. Vẻ bề ngoài sang trọng khiến laptop Lenovo Gaming này rất phù hợp với tiêu chí một sản phẩm cao cấp.",
+                    PictureUrl = "/images/products/lenovo-legion-5-pro.webp",
+                    Price = 70990000,
+                    Price_KM = 59090000,
+                    Quantity = 10,
+                    ScreenSize = "7.6 inches",
+                    ScreenTechnology = "Dynamic AMOLED 2X",
+                    RearCamera = "Camera siêu rộng: 12MP F2.2, 123°, 1.12μm\r\nCamera góc rộng: 50MP, F1.8, Dual Pixel AF, OIS, 2.0μm\r\nCamera Tele: 10 MP, F2.4, PDAF, OIS, 1.0μm, zoom 3X, zoom kỹ thuật số 30X",
+                    FrontCamera = "Camera bên ngoài:10 MP, f/2.2\r\nCamera bên trong: 4 MP, F1.8",
+                    Weight = "253g",
+                    Sim = "2 sim 5G",
+                    Color = "Black",
+                    Sound = "Dolby Atmos",
+                    Chipset = "Snapdragon 8 Gen 2 for Galaxy (4nm) 8 nhân",
+                    OperatingSystem = "Android 13",
+                    Ram = "12 GB",
+                    Storage = "512 GB",
+                    Battery = "80Wh",
+                    ReleaseTime = "7/2023"
                 }
             };
+
+            foreach (var product in products)
+            {
+                context.Products.Add(product);
+            }
+
+            context.SaveChanges();
         }
     }
 }
