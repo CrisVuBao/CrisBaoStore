@@ -1,11 +1,33 @@
 ﻿using CrisBaoStoreAPI.Entites;
+using Microsoft.AspNetCore.Identity;
 
 namespace CrisBaoStoreAPI.Data
 {
     public class DbInitializer
     {
-        public static async Task Inittialize(StoreContext context)
+        public static async Task Inittialize(StoreContext context, UserManager<User> userManager)
         {
+            if (!userManager.Users.Any())
+            {
+                var user = new User
+                {
+                    UserName = "bob",
+                    Email = "bob@gmail.com"
+                };
+
+                await userManager.CreateAsync(user,"12345678");
+                await userManager.AddToRoleAsync(user, "Member");
+
+                var admin = new User
+                {
+                    UserName = "admin",
+                    Email = "admin@gmail.com"
+                };
+
+                await userManager.CreateAsync(admin, "12345678");
+                await userManager.AddToRolesAsync(admin, new[] { "Member", "Admin" }); // admin take a lot Role
+            };
+
             if (context.Products.Any()) return;
             var products = new List<Product>
             {
