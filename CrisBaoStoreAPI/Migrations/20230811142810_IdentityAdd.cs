@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CrisBaoStoreAPI.Migrations
 {
-    public partial class IdentityAdded : Migration
+    public partial class IdentityAdd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -157,12 +157,12 @@ namespace CrisBaoStoreAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "6c624fb7-9f6c-4239-98ee-177e52171858", "40302268-ebef-46e3-bd51-be58bd312a79", "Admin", "ADMIN" });
+                values: new object[] { "22fc8add-c23b-43fa-8490-10e6e22bdb58", "0a4f1f1a-bb27-409c-b67a-ddc9e14dfb4d", "Member", "MEMBER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "92e84498-d3c9-4d69-af73-17c4470f5ff8", "124e33c2-af85-418f-8995-136f57a2cc65", "Member", "MEMBER" });
+                values: new object[] { "b9e1a620-47ac-468b-8a7d-420c806d0486", "7bfb79ef-3138-4656-a420-cea051bdd9af", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

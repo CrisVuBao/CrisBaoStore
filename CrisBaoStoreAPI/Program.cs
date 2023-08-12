@@ -16,7 +16,10 @@ builder.Services.AddDbContext<StoreContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddCors();
-builder.Services.AddIdentityCore<User>() //!Importaint  this is Add and Configure Identity for User type
+builder.Services.AddIdentityCore<User>(opt =>
+{
+    opt.User.RequireUniqueEmail = true; // enable validation check email
+}) //!Importaint  this is Add and Configure Identity for User type
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<StoreContext>();
 builder.Services.AddAuthentication(); // !Importaint

@@ -15,7 +15,7 @@ namespace CrisBaoStoreAPI.Data
                     Email = "bob@gmail.com"
                 };
 
-                await userManager.CreateAsync(user,"12345678");
+                await userManager.CreateAsync(user,"Pa$$w0d");
                 await userManager.AddToRoleAsync(user, "Member");
 
                 var admin = new User
@@ -24,7 +24,7 @@ namespace CrisBaoStoreAPI.Data
                     Email = "admin@gmail.com"
                 };
 
-                await userManager.CreateAsync(admin, "12345678");
+                await userManager.CreateAsync(admin, "Pa$$w0d");
                 await userManager.AddToRolesAsync(admin, new[] { "Member", "Admin" }); // admin take a lot Role
             };
 
