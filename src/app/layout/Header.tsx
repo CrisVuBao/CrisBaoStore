@@ -76,6 +76,7 @@ const rightLinks = [
 ]
 
 const midLinks = [
+  { title: 'Home', path: '/' },
   { title: 'Product', path: '/catalog' },
   { title: 'About', path: '/about' },
   { title: 'Contact', path: '/contact' }
@@ -84,7 +85,7 @@ const midLinks = [
 const navStyles = {
   color: 'inherit',
   textDecoration: 'none',
-  typography: 'h6',
+  typography: "h6",
   '&:hover': {
     color: 'grey.500'
   },
@@ -203,12 +204,12 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
             <FormGroup>
               <FormControlLabel
                 // checked={darkMode} giá trị mặc định của darkMode là false(light), còn khi onChange={handleThemChange} là true(dark)
-                control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked checked={darkMode} onChange={handleThemeChange} />}
+                control={<MaterialUISwitch sx={{ m: 0.5 }} defaultChecked checked={darkMode} onChange={handleThemeChange} />}
                 label="Switch"
               />
             </FormGroup>
           </Box>
-          <Box sx={{ display: 'flex', mr: 20, ml: 8 }} alignItems='center'>
+          <Box sx={{ display: 'flex', mr: 15, ml: 5 }} alignItems='center'>
             <List sx={{ display: 'flex' }}>
               {midLinks.map(({ title, path }) => (
                 <ListItem
@@ -224,11 +225,11 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
           </Box >
 
           <Box sx={{ flexGrow: 0 }} display='flex' alignItems='center'>
-            <PermPhoneMsgIcon sx={{ width: 20 }} />
-            <Typography sx={{ mr: 4 }}>
+            <PermPhoneMsgIcon sx={{ width: 25 }} />
+            <Typography sx={{ mr: 4, fontSize: 14 }}>
               0123456789
             </Typography>
-            <IconButton component={Link} to='/basket' size='large' edge='start' color='inherit' sx={{ mr: 1 }}>
+            <IconButton component={Link} to='/basket' size='large' edge='start' color='inherit' sx={{ mr: 0.5 }}>
               <Badge badgeContent={itemCount} color="secondary">
                 <ShoppingCart />
               </Badge>

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,21 +9,26 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { Paper } from '@mui/material';
-
-const defaultTheme = createTheme();
+import { useState } from 'react';
+import agent from '../../app/api/agent';
 
 export default function Login() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+    const [values, setValues] = useState({
+        username: '',
+        password: ''
+    })
+
+    const handleSubmit = (event: any) => {
+        event.preventDefault(); // this preventDefault() is stop full page reload
+        agent.Account.login(values);
     };
+
+    function handleInputChange(event: any) {
+        const { name, value } = event.target;
+        setValues({ ...values, [name]: value }); // khởi tạo param value để truyền vào trong thẻ
+    }
 
     return (
         <Container component={Paper} maxWidth="xs">
@@ -46,23 +50,21 @@ export default function Login() {
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
                         margin="normal"
-                        required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
+                        label="Username"
+                        name="username"
                         autoFocus
+                        onChange={handleInputChange}
+                        value={values.username}
                     />
                     <TextField
                         margin="normal"
-                        required
                         fullWidth
                         name="password"
                         label="Password"
                         type="password"
-                        id="password"
-                        autoComplete="current-password"
+                        onChange={handleInputChange}
+                        value={values.password}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
