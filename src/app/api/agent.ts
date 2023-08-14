@@ -1,8 +1,9 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { Axios, AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
 import { PaginatedResponse } from "../models/pagination";
 import { json } from "stream/consumers";
+import { error } from "console";
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 500))
 
@@ -19,7 +20,7 @@ axios.interceptors.response.use(async response => {
         console.log(response);
         return response;
     }
-    return response
+    return response;
 }, (error: AxiosError) => {
     const {data, status} = error.response as AxiosResponse;
     switch (status) {
