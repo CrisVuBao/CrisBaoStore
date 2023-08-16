@@ -27,6 +27,7 @@ import { setProductParams } from '../../features/catalog/catalogSlice';
 import ProductList from '../../features/catalog/ProductList';
 import Catalog from '../../features/catalog/Catalog';
 import logo from "./VuBaoStore.png";
+import SingedInMenu from './SignedInMenu';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -101,6 +102,10 @@ interface Props {
 
 export default function Header({ handleThemeChange, darkMode }: Props) {
 
+  const { user } = useAppSelector(state => state.account);
+  const { basket } = useAppSelector((state => state.basket));
+  const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
+
   const { productParams } = useAppSelector(state => state.catalog)
   const [searchTerm, setSearchTerm] = React.useState(productParams.searchTerm);
   const dispatch = useAppDispatch();
@@ -109,8 +114,7 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
     dispatch(setProductParams({ searchTerm: event.target.value }))
   }, 1000); // chờ khoảng thời gian nào đó thì mới gửi action lên cho Redux, để thực hiện chức năng Search truy vấn sản phẩm
 
-  const { basket } = useAppSelector((state => state.basket));
-  const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
+
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -223,56 +227,33 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
               ))}
             </List>
           </Box >
-
           <Box sx={{ flexGrow: 0 }} display='flex' alignItems='center'>
             <PermPhoneMsgIcon sx={{ width: 25 }} />
             <Typography sx={{ mr: 4, fontSize: 14 }}>
               0123456789
             </Typography>
-            <IconButton component={Link} to='/basket' size='large' edge='start' color='inherit' sx={{ mr: 0.5 }}>
+            <IconButton component={Link} to='/basket' size='large' edge='start' color='inherit' sx={{ mr: 1.5 }}>
               <Badge badgeContent={itemCount} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>
-            <List sx={{ display: 'flex' }}>
-              {rightLinks.map(({ title, path }) => (
-                <ListItem
-                  component={NavLink}
-                  to={path}
-                  key={path}
-                  sx={navStyles}
-                >
-                  {title}
-                </ListItem>
-              ))}
-            </List>
-            {/* <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
+            {user ? (
+              <SingedInMenu />
+            ) : (
+              <List sx={{ display: 'flex' }}>
+                {rightLinks.map(({ title, path }) => (
+                  <ListItem
+                    component={NavLink}
+                    to={path}
+                    key={path}
+                    sx={navStyles}
+                  >
+                    {title}
+                  </ListItem>
+                ))}
+              </List>
+            )}
+
           </Box>
         </Toolbar>
       </Container>

@@ -11,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Link, useNavigate } from 'react-router-dom';
 import { Paper } from '@mui/material';
-import agent from '../../app/api/agent';
 import { FieldValues, useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 import { useAppDispatch } from '../../app/store/configureStore';
@@ -25,6 +24,7 @@ export default function Login() {
     })
 
     async function submitForm(data: FieldValues) { // FieldValues of React hook form
+        debugger;
         await dispatch(signInUser(data));
         navigate('/catalog');
     }
