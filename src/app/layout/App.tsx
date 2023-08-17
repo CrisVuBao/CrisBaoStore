@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'; // this is React Hook
+import { useCallback, useEffect, useState } from 'react'; // this is React Hook
 import Header from './Header';
 import { Container, CssBaseline, Paper, ThemeProvider, createTheme } from '@mui/material';
 import { Outlet } from 'react-router-dom';
@@ -8,26 +8,25 @@ import agent from '../api/agent';
 import LoadingComponent from './LoadingComponent';
 import { getCookie } from '../util/util';
 import { useAppDispatch } from '../store/configureStore';
-import { setBasket } from '../../features/basket/basketSlice';
+import { fetchBasketAsync, setBasket } from '../../features/basket/basketSlice';
 import { fetchCurrentUser } from '../../features/account/accountSlice';
 
 export default function App() { // Function Components
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const buyerId = getCookie('buyerId'); // lấy Cookies buyerId
-    dispatch(fetchCurrentUser());
-    if (buyerId) {
-      agent.Basket.get()
-        .then(basket => dispatch(setBasket(basket)))
-        .catch(error => console.log(error))
-        .finally(() => setLoading(false));
-    }
-    else {
-      setLoading(false); // lỗi thì ko hiện icon quay quay setLoading nữa
+  const initApp = useCallback(async () => {
+    try {
+      await dispatch(fetchCurrentUser());
+      await dispatch(fetchBasketAsync());
+    } catch (error: any) {
+      console.log(error);
     }
   }, [dispatch])
+
+  useEffect(() => {
+    initApp().then(() => setLoading(false));
+  }, [initApp])
 
   const [darkMode, setDarkMode] = useState(false);
   const paletteType = darkMode ? "dark" : "light";

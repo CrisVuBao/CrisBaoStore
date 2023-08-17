@@ -23,7 +23,6 @@ export default function Login() {
     })
 
     async function submitForm(data: FieldValues) { // FieldValues of React hook form
-        debugger;
         await dispatch(signInUser(data));
         navigate('/catalog');
     }
