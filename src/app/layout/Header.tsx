@@ -4,16 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { grey } from '@mui/material/colors';
-import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import SearchIcon from '@mui/icons-material/Search';
 import { alpha, styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -21,11 +12,8 @@ import { Badge, FormControlLabel, FormGroup, List, ListItem, Switch, debounce } 
 import { Link, NavLink } from 'react-router-dom';
 import { ShoppingCart } from '@mui/icons-material';
 import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
-import ProductSearch from '../../features/catalog/ProductSearch';
 import { useAppDispatch, useAppSelector } from '../store/configureStore';
 import { setProductParams } from '../../features/catalog/catalogSlice';
-import ProductList from '../../features/catalog/ProductList';
-import Catalog from '../../features/catalog/Catalog';
 import logo from "./VuBaoStore.png";
 import SingedInMenu from './SignedInMenu';
 
