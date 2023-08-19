@@ -7,7 +7,7 @@ namespace CrisBaoStoreAPI.Controllers
         [HttpGet("api/not-found")]
         public ActionResult GetNotFound()
         {
-            return NotFound();
+            return NotFound(new ProblemDetails { Title = "Not Found"});
         }
 
         [HttpGet("api/bad-request")]
@@ -19,7 +19,7 @@ namespace CrisBaoStoreAPI.Controllers
         [HttpGet("api/unauthoried")]
         public ActionResult GetUnauthorised()
         {
-            return Unauthorized();
+            return Unauthorized(new ProblemDetails { Title = "Unauthoried"});
         }
 
         [HttpGet("api/validation-error")]

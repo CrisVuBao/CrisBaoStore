@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TLDyBqt/bKvgfmUikp1bJTUjUc2SrxUaRaYtctBtaxAxQIjGaIUyPCyTP63mE9tI4Njuwj7WiLXbivVB6Zk0Tw==",
+  "dgSpecHash": "kVofCWpM7l8v3A98tpsH6nPhpRG8LQctJjiEUPlscY2KtBGXsh0duiB/wu/5bb+ekfZeQghc0/g8Z9esAwA6vg==",
   "success": true,
   "projectFilePath": "D:\\Hoc Tap\\C_Shape\\API\\CrisBaoStore\\CrisBaoStoreAPI\\CrisBaoStoreAPI\\CrisBaoStoreAPI.csproj",
   "expectedPackageFiles": [
@@ -60,10 +60,10 @@
     "C:\\Users\\Cris_VuBao\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\Cris_VuBao\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
     "C:\\Users\\Cris_VuBao\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
-    "C:\\Users\\Cris_VuBao\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.19\\microsoft.windowsdesktop.app.ref.6.0.19.nupkg.sha512",
-    "C:\\Users\\Cris_VuBao\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.19\\microsoft.netcore.app.ref.6.0.19.nupkg.sha512",
-    "C:\\Users\\Cris_VuBao\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.19\\microsoft.aspnetcore.app.ref.6.0.19.nupkg.sha512",
-    "C:\\Users\\Cris_VuBao\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.19\\microsoft.netcore.app.host.win-x64.6.0.19.nupkg.sha512"
+    "C:\\Users\\Cris_VuBao\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.21\\microsoft.windowsdesktop.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\Cris_VuBao\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.21\\microsoft.netcore.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\Cris_VuBao\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.21\\microsoft.aspnetcore.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\Cris_VuBao\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.21\\microsoft.netcore.app.host.win-x64.6.0.21.nupkg.sha512"
   ],
   "logs": []
 }

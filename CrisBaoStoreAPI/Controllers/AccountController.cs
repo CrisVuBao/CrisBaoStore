@@ -1,10 +1,13 @@
-﻿using CrisBaoStoreAPI.DTOs;
+﻿using CrisBaoStoreAPI.Data;
+using CrisBaoStoreAPI.DTOs;
 using CrisBaoStoreAPI.Entites;
+using CrisBaoStoreAPI.Extensions;
 using CrisBaoStoreAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrisBaoStoreAPI.Controllers
 {
@@ -14,25 +17,40 @@ namespace CrisBaoStoreAPI.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly TokenService _tokenService;
+        private readonly StoreContext _context;
 
-        public AccountController(UserManager<User> userManager, TokenService tokenService)
+        public AccountController(UserManager<User> userManager, TokenService tokenService, StoreContext context)
         {
             _userManager = userManager;
             _tokenService = tokenService;
+            _context = context;
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login (LoginDto loginDto)
         {
             var user = await _userManager.FindByNameAsync(loginDto.UserName);
-            if (user == null || !await _userManager.CheckPasswordAsync(user, loginDto.Password)) 
-              {
-                Unauthorized();
-              }
+            if (user == null || !await _userManager.CheckPasswordAsync(user, loginDto.Password))
+            {
+                return Unauthorized();
+            }
+
+            var userBasket = await RetrieveBasket(loginDto.UserName); // đây là giỏ hàng của người dùng đã đăng nhập
+            var anonBasket = await RetrieveBasket(Request.Cookies["buyerId"]); // đây là hàm lấy giỏ hàng của người dùng không đăng nhập (buyerId)
+
+            if (anonBasket != null)
+            {
+                if (userBasket != null) _context.Baskets.Remove(userBasket); // nếu giỏ hàng của khách vãng lai và giỏ hàng của người dùng đã đăng nhập đều tồn tại, thì giỏ hàng của người dùng đã đăng nhập sẽ bị xóa
+                anonBasket.BuyerId = user.UserName; // chuyển giỏ hàng của vãng lai vào trong giỏ hàng của người dùng đăng nhập, (nếu đã đăng nhập)
+                Response.Cookies.Delete("buyerId");
+                await _context.SaveChangesAsync();
+            }
+
             return new UserDto
             {
                 Email = user.Email,
-                Token = await _tokenService.GenerateToken(user)
+                Token = await _tokenService.GenerateToken(user),
+                Basket = anonBasket != null ? anonBasket.MapBasketToDto() : userBasket?.MapBasketToDto() // gọi đến được MapBasketDto vì bên trong biến anonBasket,userBasket đều có chứa Basket để gọi đến MapBasketToDto
             };
         }
 
@@ -63,12 +81,30 @@ namespace CrisBaoStoreAPI.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
+            var userBasket = await RetrieveBasket(User.Identity.Name);
+
             return new UserDto
             {
+                UserName = user.UserName,
                 Email = user.Email,
-                Token = await _tokenService.GenerateToken(user)
+                Token = await _tokenService.GenerateToken(user),
+                Basket = userBasket?.MapBasketToDto()
             };
         }
-        
+
+        private async Task<Basket> RetrieveBasket(string buyerId)
+        {
+            if (string.IsNullOrEmpty(buyerId))
+            {
+                Response.Cookies.Delete("buyerId");
+                return null;
+            }
+
+            return await _context.Baskets
+                .Include(i => i.Items)
+                .ThenInclude(p => p.Product)
+                .FirstOrDefaultAsync(x => x.BuyerId == buyerId);
+        }
+
     }
 }
