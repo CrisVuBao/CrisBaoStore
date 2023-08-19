@@ -1,4 +1,5 @@
 ﻿using CrisBaoStoreAPI.Entites;
+using CrisBaoStoreAPI.Entites.OrderAggregate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ namespace CrisBaoStoreAPI.Data
         #region DbContext
         public DbSet<Product> Products { get; set; }
         public DbSet<Basket> Baskets { get; set; }
+        public DbSet<Order> Orders { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder builder) // this is create a entity Role to database
