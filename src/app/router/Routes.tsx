@@ -11,12 +11,19 @@ import BasketPage from "../../features/basket/BasketPage";
 import CheckoutPage from "../../features/checkout/CheckoutPage";
 import Login from "../../features/account/Login";
 import Register from "../../features/account/Register";
+import RequireAuth from "./RequireAuth";
 
 export const router = createBrowserRouter([ // đây là RouterProvider
     {
         path: '/',
         element: <App />,
         children: [
+            {
+                element: <RequireAuth />, children: [
+                    { path: 'checkout', element: <CheckoutPage /> }
+
+                ]
+            },
             // path: 'đặt tên đường dẫn để link vào Route', element: <Route />
             { path: '', element: <HomePage /> },
             { path: 'catalog', element: <Catalog /> },

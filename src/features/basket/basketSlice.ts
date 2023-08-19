@@ -60,6 +60,9 @@ export const basketSlice = createSlice({ // slice là một phần trạng thái
     reducers: {
         setBasket: (state, action) => {
             state.basket = action.payload // action.payload lấy dữ liệu từ initialState(trong này có các dữ liệu về Basket(giỏ hàng))
+        },
+        clearBasket: (state) => {
+            state.basket = null;
         }
     },
     extraReducers: (builder => {
@@ -96,4 +99,4 @@ export const basketSlice = createSlice({ // slice là một phần trạng thái
     })
 });
 
-export const {setBasket} = basketSlice.actions;
+export const {setBasket, clearBasket} = basketSlice.actions;
