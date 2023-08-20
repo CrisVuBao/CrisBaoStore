@@ -2,8 +2,8 @@
 
 namespace CrisBaoStoreAPI.Entites
 {
-    public class User : IdentityUser<int>
+    public class Role : IdentityRole<int>
     {
-        public UserAddress Address { get; set; }
+
     }
 }

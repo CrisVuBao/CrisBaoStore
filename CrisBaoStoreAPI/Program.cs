@@ -51,7 +51,7 @@ builder.Services.AddIdentityCore<User>(opt =>
 {
     opt.User.RequireUniqueEmail = true; // enable validation check email
 }) //!Importaint  this is Add and Configure Identity for User type
-    .AddRoles<IdentityRole>()
+    .AddRoles<Role>()
     .AddEntityFrameworkStores<StoreContext>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) // !Importaint
     .AddJwtBearer(opt =>

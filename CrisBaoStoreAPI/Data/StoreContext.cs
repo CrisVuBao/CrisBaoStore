@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CrisBaoStoreAPI.Data
 {
-    public class StoreContext : IdentityDbContext<User>
+    public class StoreContext : IdentityDbContext<User, Role, int>
     {
         // Contructor
         public StoreContext(DbContextOptions options)  : base(options)
@@ -23,10 +23,16 @@ namespace CrisBaoStoreAPI.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<IdentityRole>()
+            builder.Entity<User>()
+                .HasOne(a => a.Address)
+                .WithOne()
+                .HasForeignKey<UserAddress>(a => a.Id)
+                .OnDelete(DeleteBehavior.Cascade); // nếu xóa một đối tượng trong User , thì đối tượng trong UserAddress cũng sẽ bị xóa (hành vi xóa đệ quy, gọi là "Cascade")
+
+            builder.Entity<Role>()
                 .HasData(
-                    new IdentityRole { Name = "Member", NormalizedName = "MEMBER" },
-                    new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" }
+                    new Role { Id = 1, Name = "Member", NormalizedName = "MEMBER" },
+                    new Role { Id = 2, Name = "Admin", NormalizedName = "ADMIN" }
                 );
         }
     }
