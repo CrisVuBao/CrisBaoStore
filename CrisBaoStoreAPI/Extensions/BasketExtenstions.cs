@@ -1,6 +1,7 @@
 ﻿using CrisBaoStoreAPI.DTOs;
 using CrisBaoStoreAPI.Entites;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrisBaoStoreAPI.Extensions
 {
@@ -24,7 +25,13 @@ namespace CrisBaoStoreAPI.Extensions
                         Quantity = item.Quantity,
                     }).ToList()
                 };
+        }
 
+        public static IQueryable<Basket> RetrieveBasketWithItems(this IQueryable<Basket> query, string buyerId)
+        {
+            return query.Include(i => i.Items)
+                .ThenInclude(p => p.Product)
+                .Where(b => b.BuyerId == buyerId);
         }
     }
 }
