@@ -249,14 +249,14 @@ namespace CrisBaoStoreAPI.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "8fc48e5c-8b96-45a1-b449-902abd5167b6",
+                            ConcurrencyStamp = "2e3c5571-932e-4fb7-b3b7-c4c95ac9b308",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "29a702f8-bafe-4c14-9526-319863d34864",
+                            ConcurrencyStamp = "d3ee68a8-4272-4b92-863b-c4ab22ee5405",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

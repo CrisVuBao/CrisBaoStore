@@ -93,7 +93,7 @@ namespace CrisBaoStoreAPI.Controllers
                     .Include(a => a.Address)
                     .FirstOrDefaultAsync(x => x.UserName == User.Identity.Name);
 
-                user.Address = new UserAddress
+                var address = new UserAddress
                 {
                     FullName = orderDto.ShippingAddress.FullName, // địa chỉ trong Address sẽ bằng địa chỉ mới mà ta nhập trên form
                     Address1 = orderDto.ShippingAddress.Address1,
@@ -103,6 +103,7 @@ namespace CrisBaoStoreAPI.Controllers
                     Zip = orderDto.ShippingAddress.Zip,
                     Country = orderDto.ShippingAddress.Country
                 };
+                user.Address = address;
                 _context.Update(user); // cập nhật địa chỉ(address)
             }
 
