@@ -12,18 +12,17 @@ export interface OrderItem {
     productId: number;
     name: string;
     pictureUrl: string;
-    price: number;
+    price_KM: number;
     quantity: number;
 }
 
 export interface Order {
     id: number;
     buyerId: string
-    buyerEmail: string;
-    orderDate: string;
     shippingAddress: ShippingAddress;
-    deliveryFee: number;
+    orderDate: string;
     orderItems: OrderItem[];
+    deliveryFee: number;
     subtotal: number;
     orderStatus: string;
     total: number;

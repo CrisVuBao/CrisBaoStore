@@ -13,6 +13,7 @@ import Login from "../../features/account/Login";
 import Register from "../../features/account/Register";
 import RequireAuth from "./RequireAuth";
 import Orders from "../../features/orders/Orders";
+import OrderDetailed from "../../features/orders/OrderDetailed";
 
 export const router = createBrowserRouter([ // đây là RouterProvider
     {

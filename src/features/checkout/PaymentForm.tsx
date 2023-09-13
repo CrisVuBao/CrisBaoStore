@@ -16,7 +16,7 @@ export default function PaymentForm() {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
-                        required
+                        // required
                         id="cardNumber"
                         label="Card number"
                         fullWidth
@@ -26,7 +26,7 @@ export default function PaymentForm() {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
-                        required
+                        // required
                         id="expDate"
                         label="Expiry date"
                         fullWidth
@@ -36,7 +36,7 @@ export default function PaymentForm() {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
-                        required
+                        // required
                         id="cvv"
                         label="CVV"
                         helperText="Last three digits on signature strip"
