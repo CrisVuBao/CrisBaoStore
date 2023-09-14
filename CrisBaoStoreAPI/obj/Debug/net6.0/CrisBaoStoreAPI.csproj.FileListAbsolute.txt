@@ -73,3 +73,5 @@ D:\Hoc Tap\C_Shape\API\CrisBaoStore\CrisBaoStoreAPI\CrisBaoStoreAPI\obj\Debug\ne
 D:\Hoc Tap\C_Shape\API\CrisBaoStore\CrisBaoStoreAPI\CrisBaoStoreAPI\obj\Debug\net6.0\CrisBaoStoreAPI.Properties.Resources.resources
 D:\Hoc Tap\C_Shape\API\CrisBaoStore\CrisBaoStoreAPI\CrisBaoStoreAPI\obj\Debug\net6.0\CrisBaoStoreAPI.csproj.GenerateResource.cache
 D:\Hoc Tap\C_Shape\API\CrisBaoStore\CrisBaoStoreAPI\CrisBaoStoreAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Hoc Tap\C_Shape\API\CrisBaoStore\CrisBaoStoreAPI\CrisBaoStoreAPI\bin\Debug\net6.0\AutoMapper.dll
+D:\Hoc Tap\C_Shape\API\CrisBaoStore\CrisBaoStoreAPI\CrisBaoStoreAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
