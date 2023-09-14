@@ -9,6 +9,7 @@ namespace CrisBaoStoreAPI.RequestHelpers
         public MappingProfiles() 
         {
             CreateMap<CreateProductDto, Product>();
+            CreateMap<UpdateProductDto, Product>();
         }
     }
 }

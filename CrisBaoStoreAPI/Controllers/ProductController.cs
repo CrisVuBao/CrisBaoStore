@@ -49,6 +49,16 @@ namespace CrisBaoStoreAPI.Controllers
             return Ok(new {brands, types});
         }
 
+        [HttpGet("id", Name = "GetProduct")]
+        public async Task<ActionResult<Product>> GetProduct(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            if (product == null) return NotFound();
+
+            return product;
+        }
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct(CreateProductDto productDto)
@@ -63,14 +73,22 @@ namespace CrisBaoStoreAPI.Controllers
             return BadRequest(new ProblemDetails { Title = "Problem creating new product"});
         }
 
-        [HttpGet("id", Name = "GetProduct")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        [Authorize(Roles = "Admin")]
+        [HttpPut]
+        public async Task<ActionResult> UpdateProduct(UpdateProductDto productDto)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.FindAsync(productDto.Id);
 
             if (product == null) return NotFound();
 
-            return product;
+            _mapper.Map(productDto, product);
+
+            var result = await _context.SaveChangesAsync() > 0;
+            
+            if (result) return NoContent();
+
+            return BadRequest(new ProblemDetails { Title = "Problem updating product"});
         }
+
     }
 }
