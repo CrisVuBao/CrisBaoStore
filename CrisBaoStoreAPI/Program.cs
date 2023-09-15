@@ -1,3 +1,4 @@
+using CloudinaryDotNet;
 using CrisBaoStoreAPI.Data;
 using CrisBaoStoreAPI.Entites;
 using CrisBaoStoreAPI.RequestHelpers;
@@ -33,6 +34,8 @@ builder.Services.AddSwaggerGen( c =>
             Type = ReferenceType.SecurityScheme
         }
     };
+
+    Cloudinary cloudinary = new Cloudinary("cloudinary://<api_key:<api_secret>@<cloudname>");
 
     c.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
 
@@ -70,6 +73,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) // !I
     });
 builder.Services.AddAuthorization(); // !Importaint
 builder.Services.AddScoped<TokenService>(); // !Importaint
+builder.Services.AddScoped<ImageService>();
 
 var app = builder.Build();
 
