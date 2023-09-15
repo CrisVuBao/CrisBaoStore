@@ -90,5 +90,20 @@ namespace CrisBaoStoreAPI.Controllers
             return BadRequest(new ProblemDetails { Title = "Problem updating product"});
         }
 
+        [Authorize]
+        [HttpDelete]
+        public async Task<ActionResult> DeleteProduct(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            if (product == null) return NotFound();
+
+            _context.Products.Remove(product);
+
+            var result = await _context.SaveChangesAsync() > 0;
+
+            if(result) return Ok();
+            return BadRequest(new ProblemDetails { Title = "Not Delete" });
+        }
     }
 }
