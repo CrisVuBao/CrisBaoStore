@@ -4,6 +4,7 @@ using CrisBaoStoreAPI.DTOs;
 using CrisBaoStoreAPI.Entites;
 using CrisBaoStoreAPI.Extensions;
 using CrisBaoStoreAPI.RequestHelpers;
+using CrisBaoStoreAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,13 @@ namespace CrisBaoStoreAPI.Controllers
     {
         private readonly StoreContext _context;
         private readonly IMapper _mapper;
+        private readonly ImageService _imageService;
 
-        public ProductController(StoreContext context, IMapper mapper) 
+        public ProductController(StoreContext context, IMapper mapper, ImageService imageService) 
         {
             _context = context;
             _mapper = mapper;
+            _imageService = imageService;
         }
 
         [HttpGet]
@@ -61,9 +64,20 @@ namespace CrisBaoStoreAPI.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<ActionResult<Product>> CreateProduct(CreateProductDto productDto)
+        public async Task<ActionResult<Product>> CreateProduct([FromForm]CreateProductDto productDto) // Form là chuyển thành nhập dữ liệu theo form
         {
             var product = _mapper.Map<Product>(productDto);
+             
+            if (productDto.File != null)
+            {
+                var imageResult = await _imageService.AddImageAsync(productDto.File);
+                
+                if (imageResult.Error != null) return BadRequest(new ProblemDetails { Title = imageResult.Error.Message});
+
+                product.PictureUrl = imageResult.SecureUrl.ToString();
+                product.PublicId = imageResult.PublicId;
+            }
+
             _context.Products.Add(product);
 
             var result = await _context.SaveChangesAsync() > 0;

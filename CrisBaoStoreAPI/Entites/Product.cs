@@ -25,5 +25,6 @@
         public string Storage { get; set; }
         public string Battery { get; set; }
         public string ReleaseTime { get; set; }
+        public string PublicId { get; set; }
     }
 }

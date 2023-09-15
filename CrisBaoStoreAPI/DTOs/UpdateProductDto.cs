@@ -18,6 +18,7 @@ namespace CrisBaoStoreAPI.DTOs
         [Required]
         public string Description { get; set; }
 
+        [Required]
         public IFormFile File { get; set; }
 
         [Required]

@@ -168,6 +168,10 @@ namespace CrisBaoStoreAPI.Data.Migrations
                     b.Property<long>("Price_KM")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -249,14 +253,14 @@ namespace CrisBaoStoreAPI.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "2e3c5571-932e-4fb7-b3b7-c4c95ac9b308",
+                            ConcurrencyStamp = "1f847d58-ef42-48d1-90bd-20596ff28a5f",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "d3ee68a8-4272-4b92-863b-c4ab22ee5405",
+                            ConcurrencyStamp = "a3570844-398d-4a51-b37c-8a2cd3fb41c5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

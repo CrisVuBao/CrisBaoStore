@@ -35,8 +35,6 @@ builder.Services.AddSwaggerGen( c =>
         }
     };
 
-    Cloudinary cloudinary = new Cloudinary("cloudinary://<api_key:<api_secret>@<cloudname>");
-
     c.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
