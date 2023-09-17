@@ -1,4 +1,7 @@
 # Hướng dẫn cài đặt
++ Tài khoản để test trong Swagger và React
+  - Người dùng: Tên TK: bob, Mật khẩu: Pa$$w0d
+  - Admin: Tên TK: admin, Mật khẩu: Pa$$w0d
 + Back-end:
   - b1: Mở file "CrisBaoStoreAPI.sln" trong thư mục CrisBaoStoreAPI với VisualStudio
   - b2: Bấm Start
